@@ -1,4 +1,4 @@
-import struct
+from ctypes import *
 from typing import Union
 
 from client import MersadModbusClient
@@ -8,6 +8,12 @@ __debug = 0
 client = MersadModbusClient(host="192.168.1.238", port=502, auto_open=True, auto_close=False, timeout=3, debug=False)
 electrical_substation_id = 1
 
+
+def convert(s):
+    i = int(s, 16)                   # convert from hex to a Python int
+    cp = pointer(c_int(i))           # make this into a c integer
+    fp = cast(cp, POINTER(c_float))  # cast the int pointer to a float pointer
+    return fp.contents.value
 
 def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, float]]:
     client.unit_id(rs_485_address)
@@ -166,10 +172,6 @@ def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
 
 q = Read_PM2100(1, 1)
 
-# print("Voltage_A_N  :   " + str(q["Voltage_A_N"]))
-# print("Voltage_B_N  :   " + str(q["Voltage_B_N"]))
-# print("Voltage_C_N  :   " + str(q["Voltage_C_N"]))
-
-print("Voltage_A_N  :   " + str(struct.unpack('!f', bytes.fromhex(str(q["Voltage_A_N"])))[0]))
-print("Voltage_B_N  :   " + str(struct.unpack('!f', bytes.fromhex(str(q["Voltage_B_N"])))[0]))
-print("Voltage_C_N  :   " + str(struct.unpack('!f', bytes.fromhex(str(q["Voltage_C_N"])))[0]))
+print("Voltage_A_N  :   " + str(convert(q["Voltage_A_N"])))
+print("Voltage_B_N  :   " + str(convert(q["Voltage_B_N"])))
+print("Voltage_C_N  :   " + str(convert(q["Voltage_C_N"])))
