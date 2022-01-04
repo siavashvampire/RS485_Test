@@ -167,6 +167,6 @@ q = Read_PM2100(1, 1)
 # "Voltage_A_N": incoming_data[14],
 # "Voltage_B_N": incoming_data[15],
 # "Voltage_C_N": incoming_data[16],
-print("Voltage_A_N" +  str(q["Voltage_A_N"]))
-print("Voltage_B_N" +  str(q["Voltage_B_N"]))
-print("Voltage_C_N" +  str(q["Voltage_C_N"]))
+print("Voltage_A_N  :   " +  str(q["Voltage_A_N"]))
+print("Voltage_B_N  :   " +  str(q["Voltage_B_N"]))
+print("Voltage_C_N  :   " +  str(q["Voltage_C_N"]))
