@@ -172,6 +172,10 @@ def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
 
 q = Read_PM2100(1, 1)
 
+print("Voltage_A_N  :   " + str(q["Voltage_A_N"]))
+print("Voltage_B_N  :   " + str(q["Voltage_B_N"]))
+print("Voltage_C_N  :   " + str(q["Voltage_C_N"]))
+
 print("Voltage_A_N  :   " + str(convert(q["Voltage_A_N"])))
 print("Voltage_B_N  :   " + str(convert(q["Voltage_B_N"])))
 print("Voltage_C_N  :   " + str(convert(q["Voltage_C_N"])))
