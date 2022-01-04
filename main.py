@@ -1,25 +1,19 @@
-from types import Union
-
-from pyModbusTCP.client import ModbusClient
-from pyModbusTCP import utils
-from time import sleep
-import json
+from typing import Union
 
 from client import MersadModbusClient
 
 __debug = 0
 
-# client = ModbusClient(host = "192.168.1.238", port = 502, auto_open = True, auto_close = True, timeout = 3, debug = False)
 client = MersadModbusClient(host="192.168.1.238", port=502, auto_open=True, auto_close=False, timeout=3, debug=False)
 electrical_substation_id = 1
 
-def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, float]]:
 
+def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, float]]:
     client.unit_id(rs_485_address)
 
     # incoming_data_part1 = client.multiple_register_read("holding", 3000, 17, "FLOAT32")
     incoming_data_part1 = client.multiple_register_read("holding", 2999, 17, "FLOAT32")
-    num = incoming_data_part1[0]
+    num = incoming_data_part1
     # if not num != num:
     if 1:
         # Todo:bar asas device type nis
@@ -169,6 +163,6 @@ def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
         return {"substation_id": -1}
 
 
-q = Read_PM2100(1,1)
+q = Read_PM2100(1, 1)
 
 print(q)
