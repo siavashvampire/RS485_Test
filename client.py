@@ -56,19 +56,19 @@ class MersadModbusClient(ModbusClient):
                 return uint_16bit_val
 
     def multiple_register_read(self, _input_or_holding: str, _address: int, _length: int, _data_type: str,
-                               _big_endian: bool = False):
+                               _big_endian: bool = True):
         _length = self.get_correct_length_by_data_type(_data_type, _length)
 
         if _input_or_holding == "input":
+            _big_endian = True
             data = self.read_input_registers(_address, _length)
         elif _input_or_holding == "holding":
             data = self.read_holding_registers(_address, _length)
         else:
             data = self.read_holding_registers(_address, _length)
 
-        # if data:
-        #     return self.render_data(_data_type, data, _big_endian)
-        return data
+        if data:
+            return self.render_data(_data_type, data, _big_endian)
 
     def read_on_timer(self):
         self.unit_id(13)
