@@ -173,6 +173,6 @@ def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
         return {"substation_id": -1}
 
 
-q = Read_PM2100(1, 1)
+q = Read_PM2100(2, 1)
 
 print(q)
