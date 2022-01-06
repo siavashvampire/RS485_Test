@@ -21,7 +21,7 @@ def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
     client.unit_id(rs_485_address)
 
     # incoming_data_part1 = client.multiple_register_read("holding", 3000, 17, "FLOAT32")
-    incoming_data_part1 = client.multiple_register_read("holding", 2999, 6, "FLOAT32")
+    incoming_data_part1 = client.multiple_register_read("holding", 3019, 6, "FLOAT32")
     num = incoming_data_part1
     # if not num != num:
     if 1:
@@ -63,9 +63,9 @@ def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
             dict_data_out = {
                 "substation_id": electrical_substation_id,
                 "unitId": rs_485_address,
-                "Current_A": incoming_data[0],
-                "Current_B": incoming_data[1],
-                "Current_C": incoming_data[2],
+                # "Current_A": incoming_data[0],
+                # "Current_B": incoming_data[1],
+                # "Current_C": incoming_data[2],
                 # "Current_N": incoming_data[3],
                 # "Current_G": incoming_data[4],
                 # "Current_Avg": incoming_data[5],
@@ -74,10 +74,10 @@ def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
                 # "Current_Unbalance_B": incoming_data[7],
                 # "Current_Unbalance_C": incoming_data[8],
                 # "Current_Unbalance_Worst": incoming_data[9],
-                #
-                # "Voltage_A_B": incoming_data[10],
-                # "Voltage_B_C": incoming_data[11],
-                # "Voltage_C_A": incoming_data[12],
+
+                "Voltage_A_B": incoming_data[0],
+                "Voltage_B_C": incoming_data[1],
+                "Voltage_C_A": incoming_data[2],
                 # "Voltage_L_L_Avg": incoming_data[13],
                 # "Voltage_A_N": incoming_data[14],
                 # "Voltage_B_N": incoming_data[15],
