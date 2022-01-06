@@ -125,7 +125,6 @@ class MersadModbusClient(ModbusClient):
             return data
         elif _data_type == "INT64":
             while len(data) >= 4:
-                print(data[0:4])
                 this_int_64 = (data[0:4][3] << 16 * 3) + (data[0:4][2] << 16 * 2) + (data[0:4][1] << 16 * 1) + \
                               data[0:4][0]
                 list_float.append(this_int_64)

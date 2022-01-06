@@ -42,19 +42,16 @@ def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
         incoming_data_part4 = client.multiple_register_read("holding", 3109, 1, "FLOAT32")
         incoming_data_part5 = client.multiple_register_read("holding", 3193, 1, "FLOAT32")
         incoming_data_part6 = client.multiple_register_read("holding", 3203, 12, "INT64")
-        incoming_data_part7 = client.multiple_register_read("holding", 3272, 4, "INT64")
-        incoming_data_part8 = client.multiple_register_read("holding", 3304, 12, "INT64")
-        incoming_data_part9 = client.multiple_register_read("holding", 3518, 9, "INT64")
+        # incoming_data_part7 = client.multiple_register_read("holding", 3272, 4, "INT64")
+        # incoming_data_part8 = client.multiple_register_read("holding", 3304, 12, "INT64")
+        # incoming_data_part9 = client.multiple_register_read("holding", 3518, 9, "INT64")
         try:
             incoming_data = incoming_data_part1 + \
                             incoming_data_part2 + \
                             incoming_data_part3 + \
                             incoming_data_part4 + \
                             incoming_data_part5 + \
-                            incoming_data_part6 + \
-                            incoming_data_part7 + \
-                            incoming_data_part8 + \
-                            incoming_data_part9
+                            incoming_data_part6
 
             # for val in incoming_data:
             #     if val != val:
@@ -133,33 +130,33 @@ def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
                 "Apparent_Energy_Delivered_Pos_Received": incoming_data[58],
                 "Apparent_Energy_Delivered_Neg_Received": incoming_data[59],
 
-                "Reactive_Energy_in_Quadrant_I": incoming_data[60],
-                "Reactive_Energy_in_Quadrant_II": incoming_data[61],
-                "Reactive_Energy_in_Quadrant_III": incoming_data[62],
-                "Reactive_Energy_in_Quadrant_IV": incoming_data[63],
+                # "Reactive_Energy_in_Quadrant_I": incoming_data[60],
+                # "Reactive_Energy_in_Quadrant_II": incoming_data[61],
+                # "Reactive_Energy_in_Quadrant_III": incoming_data[62],
+                # "Reactive_Energy_in_Quadrant_IV": incoming_data[63],
+                #
+                # "Active_Energy_Delivered_Into_Load_Permanent": incoming_data[64],
+                # "Active_Energy_Received_Out_of_Load_Permanent": incoming_data[65],
+                # "Active_Energy_Delivered_Pos_Received_Permanent": incoming_data[66],
+                # "Active_Energy_Delivered_Neg_Received_Permanent": incoming_data[67],
+                # "Reactive_Energy_Delivered_Permanent": incoming_data[68],
+                # "Reactive_Energy_Received_Permanent": incoming_data[69],
+                # "Reactive_Energy_Delivered_Pos_Received_Permanent": incoming_data[70],
+                # "Reactive_Energy_Delivered_Neg_Received_Permanent": incoming_data[71],
+                # "Apparent_Energy_Delivered_Permanent": incoming_data[72],
+                # "Apparent_Energy_Received_Permanent": incoming_data[73],
+                # "Apparent_Energy_Delivered_Pos_Received_Permanent": incoming_data[74],
+                # "Apparent_Energy_Delivered_Neg_Received_Permanent": incoming_data[75],
 
-                "Active_Energy_Delivered_Into_Load_Permanent": incoming_data[64],
-                "Active_Energy_Received_Out_of_Load_Permanent": incoming_data[65],
-                "Active_Energy_Delivered_Pos_Received_Permanent": incoming_data[66],
-                "Active_Energy_Delivered_Neg_Received_Permanent": incoming_data[67],
-                "Reactive_Energy_Delivered_Permanent": incoming_data[68],
-                "Reactive_Energy_Received_Permanent": incoming_data[69],
-                "Reactive_Energy_Delivered_Pos_Received_Permanent": incoming_data[70],
-                "Reactive_Energy_Delivered_Neg_Received_Permanent": incoming_data[71],
-                "Apparent_Energy_Delivered_Permanent": incoming_data[72],
-                "Apparent_Energy_Received_Permanent": incoming_data[73],
-                "Apparent_Energy_Delivered_Pos_Received_Permanent": incoming_data[74],
-                "Apparent_Energy_Delivered_Neg_Received_Permanent": incoming_data[75],
-
-                "Active_Energy_Delivered_Phase_A": incoming_data[76],
-                "Active_Energy_Delivered_Phase_B": incoming_data[77],
-                "Active_Energy_Delivered_Phase_C": incoming_data[78],
-                "Reactive_Energy_Delivered_Phase_A": incoming_data[79],
-                "Reactive_Energy_Delivered_Phase_B": incoming_data[80],
-                "Reactive_Energy_Delivered_Phase_C": incoming_data[81],
-                "Apparent_Energy_Delivered_Phase_A": incoming_data[82],
-                "Apparent_Energy_Delivered_Phase_B": incoming_data[83],
-                "Apparent_Energy_Delivered_Phase_C": incoming_data[84]
+                # "Active_Energy_Delivered_Phase_A": incoming_data[76],
+                # "Active_Energy_Delivered_Phase_B": incoming_data[77],
+                # "Active_Energy_Delivered_Phase_C": incoming_data[78],
+                # "Reactive_Energy_Delivered_Phase_A": incoming_data[79],
+                # "Reactive_Energy_Delivered_Phase_B": incoming_data[80],
+                # "Reactive_Energy_Delivered_Phase_C": incoming_data[81],
+                # "Apparent_Energy_Delivered_Phase_A": incoming_data[82],
+                # "Apparent_Energy_Delivered_Phase_B": incoming_data[83],
+                # "Apparent_Energy_Delivered_Phase_C": incoming_data[84]
             }
 
             # json_data_out = json.dumps(dict_data_out, indent=2)
@@ -176,3 +173,44 @@ def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
 q = Read_PM2100(2, 1)
 
 print(q)
+
+[0, 0, 1, 518]
+[0, 0, 3391, 61406]
+[0, 0, 3392, 61924]
+[65535, 65535, 62145, 4648]
+[0, 0, 16, 14958]
+[0, 0, 1936, 42148]
+[0, 0, 1952, 57106]
+[65535, 65535, 63615, 38346]
+[0, 0, 131, 29529]
+[0, 0, 3974, 3897]
+[0, 0, 4105, 33426]
+[65535, 65535, 61693, 25632]
+
+[32768, 32768, 32768, 32768]
+[32768, 32768, 32768, 32768]
+[32768, 32768, 32768, 32768]
+[32768, 32768, 32768, 32768]
+
+[32768, 32768, 32768, 32768]
+[32768, 32768, 32768, 32768]
+[32768, 32768, 32768, 32768]
+[32768, 32768, 32768, 32768]
+[32768, 32768, 32768, 32768]
+[32768, 32768, 32768, 32768]
+[32768, 32768, 32768, 32768]
+[32768, 32768, 32768, 32768]
+[32768, 32768, 32768, 32768]
+[32768, 32768, 32768, 32768]
+[32768, 32768, 32768, 32768]
+[32768, 32768, 32768, 32768]
+
+[65535, 65535, 65535, 65535]
+[65535, 65535, 65535, 65535]
+[65535, 65535, 65535, 65535]
+[65535, 65535, 65535, 65535]
+[65535, 65535, 65535, 65535]
+[65535, 65535, 65535, 65535]
+[65535, 65535, 65535, 65535]
+[65535, 65535, 65535, 65535]
+[65535, 65535, 65535, 65535]
