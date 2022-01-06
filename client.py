@@ -66,8 +66,9 @@ class MersadModbusClient(ModbusClient):
         else:
             data = self.read_holding_registers(_address, _length)
 
-        if data:
-            return self.render_data(_data_type, data, _big_endian)
+        # if data:
+        #     return self.render_data(_data_type, data, _big_endian)
+        return data
 
     def read_on_timer(self):
         self.unit_id(13)
