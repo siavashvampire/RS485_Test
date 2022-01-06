@@ -23,7 +23,7 @@ def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
     client.unit_id(rs_485_address)
 
     # incoming_data_part1 = client.multiple_register_read("holding", 3000, 17, "FLOAT32")
-    incoming_data_part1 = client.multiple_register_read("holding", 3019, 17, "FLOAT32")
+    incoming_data_part1 = client.multiple_register_read("holding", 2999, 17, "FLOAT32")
     num = incoming_data_part1
     # if not num != num:
     if 1:
