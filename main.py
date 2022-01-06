@@ -75,9 +75,9 @@ def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
                 # "Current_Unbalance_C": incoming_data[8],
                 # "Current_Unbalance_Worst": incoming_data[9],
 
-                "Voltage_A_B": incoming_data[0],
-                "Voltage_B_C": incoming_data[1],
-                "Voltage_C_A": incoming_data[2],
+                # "Voltage_A_B": incoming_data[0],
+                # "Voltage_B_C": incoming_data[1],
+                # "Voltage_C_A": incoming_data[2],
                 # "Voltage_L_L_Avg": incoming_data[13],
                 # "Voltage_A_N": incoming_data[14],
                 # "Voltage_B_N": incoming_data[15],
@@ -173,11 +173,13 @@ def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
         return {"substation_id": -1}
 
 
-q = Read_PM2100(1, 1)
+# q = Read_PM2100(1, 1)
+q = incoming_data_part1 = client.multiple_register_read("holding", 3019, 6, "FLOAT32")
 
-print("Voltage_A_N  :   " + str(q["Voltage_A_N"]))
-print("Voltage_B_N  :   " + str(q["Voltage_B_N"]))
-print("Voltage_C_N  :   " + str(q["Voltage_C_N"]))
+print(q)
+# print("Voltage_A_N  :   " + str(q["Voltage_A_N"]))
+# print("Voltage_B_N  :   " + str(q["Voltage_B_N"]))
+# print("Voltage_C_N  :   " + str(q["Voltage_C_N"]))
 
 # print("Voltage_A_N  :   " + str(convert(q["Voltage_A_N"])))
 # print("Voltage_B_N  :   " + str(convert(q["Voltage_B_N"])))
