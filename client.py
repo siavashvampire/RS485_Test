@@ -130,8 +130,8 @@ class MersadModbusClient(ModbusClient):
             print(data[0:4][3])
 
             while len(data) >= 4:
-                this_int_64 = (data[0:4][3] << 16 * 3) + (data[0:4][2] << 16 * 2) + (data[0:4][1] << 16 * 1) + \
-                              data[0:4][0]
+                this_int_64 = (data[0:4][0] << 16 * 3) + (data[0:4][1] << 16 * 2) + (data[0:4][2] << 16 * 1) + \
+                              data[0:4][3]
                 list_float.append(this_int_64)
                 del data[0:4]
 

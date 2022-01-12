@@ -45,6 +45,7 @@ def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
         incoming_data_part7 = client.multiple_register_read("holding", 3272, 4, "INT64")
         incoming_data_part8 = client.multiple_register_read("holding", 3304, 12, "INT64")
         incoming_data_part9 = client.multiple_register_read("holding", 3518, 9, "INT64")
+
         try:
             incoming_data = incoming_data_part1 + \
                             incoming_data_part2 + \
