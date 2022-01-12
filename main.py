@@ -175,4 +175,6 @@ def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
 
 q = Read_PM2100(1, 1)
 
-print(q)
+# print(q)
+for key, value in q.items():
+    print(key, ' : ', value)
