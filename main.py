@@ -181,5 +181,7 @@ def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
 #     print(key, ' : ', value)
 
 client.unit_id(1)
+incoming_data_part = client.multiple_register_read("holding", 3203, 1, "INT64")
+print(incoming_data_part)
 incoming_data_part = client.multiple_register_read("holding", 2699, 1, "FLOAT32")
 print(incoming_data_part)
