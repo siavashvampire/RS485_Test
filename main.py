@@ -173,8 +173,11 @@ def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
         return {"substation_id": -1}
 
 
-q = Read_PM2100(1, 1)
+# q = Read_PM2100(1, 1)
 
 # print(q)
-for key, value in q.items():
-    print(key, ' : ', value)
+# for key, value in q.items():
+#     print(key, ' : ', value)
+
+incoming_data_part = client.multiple_register_read("holding", 3203, 1, "INT64")
+print(incoming_data_part)
