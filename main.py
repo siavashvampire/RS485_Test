@@ -41,7 +41,7 @@ def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
         incoming_data_part3 = client.multiple_register_read("holding", 3077, 8, "FLOAT32")
         incoming_data_part4 = client.multiple_register_read("holding", 3109, 1, "FLOAT32")
         incoming_data_part5 = client.multiple_register_read("holding", 3193, 1, "FLOAT32")
-        incoming_data_part6 = client.multiple_register_read("holding", 2699, 12, "INT64")
+        incoming_data_part6 = client.multiple_register_read("holding", 2699, 12, "FLOAT32")
 
         try:
             incoming_data = incoming_data_part1 + \
@@ -142,6 +142,5 @@ def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
 
 q = Read_PM2100(1, 1)
 
-print(q)
 for key, value in q.items():
     print(key, ' : ', value)
