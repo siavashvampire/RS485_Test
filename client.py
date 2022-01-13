@@ -124,11 +124,6 @@ class MersadModbusClient(ModbusClient):
         elif _data_type == "INT16":
             return data
         elif _data_type == "INT64":
-            print(data[0:4][0])
-            print(data[0:4][1])
-            print(data[0:4][2])
-            print(data[0:4][3])
-
             while len(data) >= 4:
                 this_int_64 = (data[0:4][0] << 16 * 3) + (data[0:4][1] << 16 * 2) + (data[0:4][2] << 16 * 1) + \
                               data[0:4][3]
