@@ -19,7 +19,7 @@ def convert(s):
     return fp.contents.value
 
 
-def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, float]]:
+def Read_PM2xxx(rs_485_address: int, device_type: int) -> dict[str, Union[int, float]]:
     client.unit_id(rs_485_address)
 
     # incoming_data_part1 = client.multiple_register_read("holding", 3000, 17, "FLOAT32")
@@ -140,7 +140,19 @@ def Read_PM2100(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
         return {"substation_id": -1}
 
 
-q = Read_PM2100(1, 1)
+rs_485_address = 1
+client.unit_id(rs_485_address)
+
+incoming_data = client.multiple_register_read("holding", 3875, 4, "FLOAT32")
+
+q = {
+    "substation_id": electrical_substation_id,
+    "unitId": rs_485_address,
+    "Last Demand": incoming_data[0],
+    "Present Demand": incoming_data[1],
+    "Predicted Demand": incoming_data[2],
+    "Peak Demand": incoming_data[3]
+}
 
 for key, value in q.items():
     print(key, ' : ', value)
