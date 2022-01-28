@@ -23,7 +23,7 @@ def Read_PM2xxx(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
     client.unit_id(rs_485_address)
 
     incoming_data_part1 = client.multiple_register_read("holding", 2699, 12, "FLOAT32")
-    num = incoming_data_part1
+    num = incoming_data_part1[0]
     if not num != num:
         # Todo:bar asas device type nis
         incoming_data_part2 = client.multiple_register_read("holding", 2999, 6, "FLOAT32")
@@ -126,7 +126,8 @@ def Read_PM2xxx(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
 
             return dict_data_out
 
-        except:
+        except Exception as e:
+            print(e)
             print("Error in Read Data From PM2100")
             return {"substation_id": -1}
     else:
