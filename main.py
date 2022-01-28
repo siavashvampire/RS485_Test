@@ -145,8 +145,9 @@ client.unit_id(rs_485_address)
 
 incoming_data1 = client.multiple_register_read("holding", 3875, 4, "FLOAT32")
 incoming_data2 = client.multiple_register_read("holding", 3883, 1, "DATETIME")
+incoming_data3 = client.multiple_register_read("holding", 131, 1, "DATETIME")
 
-incoming_data = incoming_data1 + incoming_data2
+incoming_data = incoming_data1 + incoming_data2 + incoming_data3
 
 q = {
     "substation_id": electrical_substation_id,
@@ -156,6 +157,7 @@ q = {
     "Predicted Demand": incoming_data[2],
     "Peak Demand": incoming_data[3],
     "Peak DATETIME Demand": incoming_data[4]
+    "test DateTime": incoming_data[4]
 }
 
 for key, value in q.items():
