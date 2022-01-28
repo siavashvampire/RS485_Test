@@ -33,7 +33,7 @@ def Read_PM2xxx(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
         incoming_data_part6 = client.multiple_register_read("holding", 3763, 1, "FLOAT32")
         incoming_data_part7 = client.multiple_register_read("holding", 3779, 1, "FLOAT32")
         incoming_data_part8 = client.multiple_register_read("holding", 3795, 1, "FLOAT32")
-        incoming_data_part9 = client.multiple_register_read("holding", 3875, 1, "FLOAT32")
+        incoming_data_part9 = client.multiple_register_read("holding", 3875, 4, "FLOAT32")
         incoming_data_part10 = client.multiple_register_read("holding", 3883, 1, "DATETIME")
 
         try:
@@ -119,7 +119,6 @@ def Read_PM2xxx(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
                 "Current_Avg_Predicted_Demand": incoming_data[53],
                 "Current_Avg_Peak_Demand": incoming_data[54],
                 "Current_Avg_PK_DT_Demand": incoming_data[55],
-
             }
 
             # json_data_out = json.dumps(dict_data_out, indent=2)
