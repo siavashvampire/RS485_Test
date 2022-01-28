@@ -42,6 +42,7 @@ def Read_PM2xxx(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
                             incoming_data_part3 + \
                             incoming_data_part4 + \
                             incoming_data_part5 + \
+                            incoming_data_part6 + \
                             incoming_data_part7 + \
                             incoming_data_part8 + \
                             incoming_data_part9 + \
