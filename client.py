@@ -138,7 +138,7 @@ class MersadModbusClient(ModbusClient):
                               data[0:4][3]
                 list_float.append(this_int_64)
                 del data[0:4]
-                
+
             return list_float
         else:
             return data
