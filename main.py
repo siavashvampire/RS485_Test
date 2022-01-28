@@ -156,8 +156,8 @@ q = {
     "Present Demand": incoming_data[1],
     "Predicted Demand": incoming_data[2],
     "Peak Demand": incoming_data[3],
-    "Peak DATETIME Demand": incoming_data[4]
-    "test DateTime": incoming_data[4]
+    "Peak DATETIME Demand": incoming_data[4],
+    "test DateTime": incoming_data[5]
 }
 
 for key, value in q.items():
