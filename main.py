@@ -140,10 +140,13 @@ def Read_PM2xxx(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
         return {"substation_id": -1}
 
 
-rs_485_address = 1
+rs_485_address = 2
 client.unit_id(rs_485_address)
 
-incoming_data = client.multiple_register_read("holding", 3884, 4, "DATETIME")
+incoming_data1 = client.multiple_register_read("holding", 3875, 4, "FLOAT32")
+incoming_data2 = client.multiple_register_read("holding", 3884, 1, "DATETIME")
+
+incoming_data = incoming_data1 + incoming_data2
 
 q = {
     "substation_id": electrical_substation_id,
