@@ -107,7 +107,7 @@ class MersadModbusClient(ModbusClient):
             return _length * 2
         elif _data_type == "INT16":
             return _length
-        elif _data_type == "INT64":
+        elif _data_type == "INT64" or _data_type == "DATETIME":
             return _length * 4
         else:
             return _length
@@ -129,6 +129,10 @@ class MersadModbusClient(ModbusClient):
                               data[0:4][3]
                 list_float.append(this_int_64)
                 del data[0:4]
+
+            return list_float
+        elif _data_type == "DATETIME":
+            print(data)
 
             return list_float
         else:
