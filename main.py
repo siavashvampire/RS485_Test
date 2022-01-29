@@ -136,8 +136,8 @@ def Read_PM2xxx(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
 rs_485_address = 1
 # q = Read_PM2xxx(2, 1)
 client.unit_id(rs_485_address)
-incoming_data_part1 = client.multiple_register_read("holding", 21300, 10, "FLOAT32")
-incoming_data_part2 = client.multiple_register_read("holding", 21322, 16, "FLOAT32")
+incoming_data_part1 = client.multiple_register_read("holding", 21299, 10, "FLOAT32")
+incoming_data_part2 = client.multiple_register_read("holding", 21321, 16, "FLOAT32")
 incoming_data = incoming_data_part1+incoming_data_part2
 
 q = {
