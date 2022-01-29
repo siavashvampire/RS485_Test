@@ -65,7 +65,7 @@ class MersadModbusClient(ModbusClient):
             data = self.read_holding_registers(_address, _length)
         else:
             data = self.read_holding_registers(_address, _length)
-
+        print(data)
         if data:
             return self.render_data(_data_type, data, _big_endian)
 
