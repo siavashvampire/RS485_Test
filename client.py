@@ -60,7 +60,6 @@ class MersadModbusClient(ModbusClient):
         _length = self.get_correct_length_by_data_type(_data_type, _length)
 
         if _input_or_holding == "input":
-            _big_endian = True
             data = self.read_input_registers(_address, _length)
         elif _input_or_holding == "holding":
             data = self.read_holding_registers(_address, _length)
@@ -125,8 +124,8 @@ class MersadModbusClient(ModbusClient):
             return data
         elif _data_type == "INT64":
             while len(data) >= 4:
-                this_int_64 = (data[0:4][0] << 16 * 3) + (data[0:4][1] << 16 * 2) + (data[0:4][2] << 16 * 1) + \
-                              data[0:4][3]
+                this_int_64 = (data[0:4][3] << 16 * 3) + (data[0:4][2] << 16 * 2) + (data[0:4][1] << 16 * 1) + \
+                              data[0:4][0]
                 list_float.append(this_int_64)
                 del data[0:4]
 
