@@ -153,24 +153,26 @@ def Read_PM2xxx(rs_485_address: int, device_type: int) -> dict[str, Union[int, f
         return {"substation_id": -1}
 
 
-rs_485_address = 1
-# q = Read_PM2xxx(2, 1)
-client.unit_id(rs_485_address)
-incoming_data_part1 = client.multiple_register_read("holding", 21299, 10, "FLOAT32")
-incoming_data_part2 = client.multiple_register_read("holding", 21321, 16, "FLOAT32")
-incoming_data = incoming_data_part1 + incoming_data_part2
+q = Read_PM2xxx(2, 1)
 
-q = {
-    "substation_id": electrical_substation_id,
-    "unitId": rs_485_address,
 
-    "THD_Current_A": incoming_data[0],
-    "THD_Current_B": incoming_data[1],
-    "THD_Current_C": incoming_data[2],
-    "THD_Voltage_A_N": incoming_data[3],
-    "THD_Voltage_B_N": incoming_data[4],
-    "THD_Voltage_C_N": incoming_data[5]
-}
+# rs_485_address = 1
+# client.unit_id(rs_485_address)
+# incoming_data_part1 = client.multiple_register_read("holding", 21299, 10, "FLOAT32")
+# incoming_data_part2 = client.multiple_register_read("holding", 21321, 16, "FLOAT32")
+# incoming_data = incoming_data_part1 + incoming_data_part2
+#
+# q = {
+#     "substation_id": electrical_substation_id,
+#     "unitId": rs_485_address,
+#
+#     "THD_Current_A": incoming_data[0],
+#     "THD_Current_B": incoming_data[1],
+#     "THD_Current_C": incoming_data[2],
+#     "THD_Voltage_A_N": incoming_data[3],
+#     "THD_Voltage_B_N": incoming_data[4],
+#     "THD_Voltage_C_N": incoming_data[5]
+# }
 
 for key, value in q.items():
     print(key, ' : ', value)
